@@ -97,5 +97,20 @@ public class StudentDAO implements DAO<Student>{
         }
         return resultSet;
     }
+    public boolean update(int Id, String name){
+        try {
+            PreparedStatement statement;
+            String query = "UPDATE   Students Set name = ?" +
+                    "Where Id = ?";
+            statement= connection.prepareStatement(query);
+            statement.setString(1,name);
+            statement.setString(2,String.valueOf(Id));
+            statement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        return false;
+    }
 }
