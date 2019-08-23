@@ -60,7 +60,7 @@ public class CommandParser {
                 facultyDAO.all();
                 break;
             default:
-                throw new java.lang.RuntimeException("this is not quite as bad");
+                throw new java.lang.RuntimeException("Unsupported command");
         }
         return true;
     }

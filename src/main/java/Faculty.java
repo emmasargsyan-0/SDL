@@ -7,11 +7,12 @@ public class Faculty {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public int getId(int id) {
-        return id;
-    }
 }
