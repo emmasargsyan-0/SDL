@@ -65,13 +65,6 @@ public class StudentDAO implements DAO<Student>{
             PreparedStatement statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                String name = resultSet.getString("Name");
-                int id = resultSet.getInt("Id");
-                String facultyName = resultSet.getString("Faculty_Name");
-                System.out.println("Name - " + name + ", Lastname - " + id +
-                        ", Specialization - " + facultyName );
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
