@@ -83,8 +83,8 @@ public class StudentDAO implements DAO<Student>{
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, facultyId);
             resultSet = statement.executeQuery();
-
-
+            Printer printer = new Printer();
+            printer.printStudentsByFaculty(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -106,4 +106,43 @@ public class StudentDAO implements DAO<Student>{
 
         return false;
     }
+
+    public void studentsById(int id){
+        studentsInfo(id);
+        studentsGrade(id);
+    }
+
+    public ResultSet studentsGrade(int id){
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT Subjects.[Name], Grades.[Grade]\n" +
+                    "FROM Students\n" +
+                    "JOIN Grades on Students.Id = Grades.StudentID\n" +
+                    "JOIN Subjects on Grades.StudentId = Subjects.Id\n" +
+                    "WHERE StudentId = ? \n" +
+                    "GROUP BY  Subjects.[Name], Grades.[Grade]\n";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
+    public ResultSet studentsInfo(int id){
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT Students.[Id], Students.[Name]\n" +
+                    "FROM Students\n" +
+                    "WHERE Students.[Id] = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
 }
