@@ -7,10 +7,11 @@ public class SqlServerManager implements DbManager {
     @Override
     public void connect() {
         try {
+
             connection = DriverManager.getConnection(
-                    "jdbc:sqlserver://localhost:1433;database=SDL",
-                    "sa",
-                    "1111");
+                    "jdbc:sqlserver://summerschool.westus2.cloudapp.azure.com:1433;database=group1",
+                    "group_1",
+                    "mWfL4mkR");
         } catch (SQLException e) {
             e.printStackTrace();
         }
