@@ -93,8 +93,8 @@ public class StudentDAO implements DAO<Student>{
     public boolean update(int Id, String name){
         try {
             PreparedStatement statement;
-            String query = "UPDATE   Students Set name = ?" +
-                    "Where Id = ?";
+            String query = "UPDATE   Students Set Name = ?" +
+                    " Where Id = ?";
             statement= connection.prepareStatement(query);
             statement.setString(1,name);
             statement.setString(2,String.valueOf(Id));
