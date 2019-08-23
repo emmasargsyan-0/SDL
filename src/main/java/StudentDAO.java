@@ -79,4 +79,28 @@ public class StudentDAO implements DAO<Student>{
         return resultSet;
     }
 
+    public ResultSet studentsByFaculty(int facultyId){
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT Students.[Id], Students.[Name]\n" +
+                    "FROM Students\n" +
+                    "JOIN Faculties on Students.FacultyId = Faculties.Id\n" +
+                    "WHERE Faculties.Id = ?\n" +
+                    "GROUP BY Students.[Id], Students.[Name]";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, facultyId);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("Name");
+                int id = resultSet.getInt("Id");
+                System.out.println("Name - " + name + ", Lastname - " + id );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
 }
