@@ -54,7 +54,7 @@ public class CommandParser {
                 printer.printTable(studentDAO.studentsByFaculty(id));
                 break;
             case "top1":
-          //      printer.printTable(studentDAO.top1());
+                printer.printTable(studentDAO.top1());
                 break;
             case "all":
                 facultyDAO.all();

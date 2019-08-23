@@ -39,6 +39,25 @@ public class StudentDAO implements DAO<Student>{
         return true;
     }
 
+    public ResultSet top1(){
+        ResultSet resultSet = null;
+        try {
+            String query="SELECT MAX(T1.[StuName]), MAX([FacName]) ,MAX(Grade)\n" +
+                    "from\n" +
+                    "(SELECT Students.[Name] as StuName, Faculties.Id, Faculties.[Name] as FacName, AVG(CAST(Grades.Grade as float))  AS Grade\n" +
+                    "FROM Students\n" +
+                    "FULL JOIN Grades on Students.Id = Grades.StudentId\n" +
+                    "FULL JOIN Faculties on Students.FacultyId = Faculties.Id\n" +
+                    "GROUP BY Students.[Name], Faculties.Id, Faculties.Name) as T1\n" +
+                    "GROUP BY Id";
+            PreparedStatement statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
     public ResultSet allStudentList(){
         ResultSet resultSet = null;
         try {
