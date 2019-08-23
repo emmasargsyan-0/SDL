@@ -107,10 +107,6 @@ public class StudentDAO implements DAO<Student>{
         return false;
     }
 
-    public void studentsById(int id){
-        studentsInfo(id);
-        studentsGrade(id);
-    }
 
     public ResultSet studentsGrade(int id){
         ResultSet resultSet = null;
