@@ -46,8 +46,10 @@ public class Printer {
                 }
                 word = rs.getString(i);
                 System.out.print(word);
-                for (int j = 0; j <5-word.length() ; j++) {
-                    System.out.print(" ");
+                if(word!=null) {
+                    for (int j = 0; j < 5 - word.length(); j++) {
+                        System.out.print(" ");
+                    }
                 }
             }
             System.out.println("");

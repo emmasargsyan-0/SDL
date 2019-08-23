@@ -1,8 +1,8 @@
 public class Faculty {
     private String name;
-    private String id;
+    private int id;
 
-    public Faculty(String name, String id) {
+    public Faculty(String name, int id) {
         this.name = name;
         this.id = id;
     }
@@ -11,7 +11,7 @@ public class Faculty {
         return name;
     }
 
-    public void getId(String id) {
-        this.id = id;
+    public int getId(int id) {
+        return id;
     }
 }

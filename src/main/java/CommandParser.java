@@ -57,7 +57,7 @@ public class CommandParser {
           //      printer.printTable(studentDAO.top1());
                 break;
             case "all":
-   //             printer.printTable(studentDAO.all());
+                facultyDAO.all();
                 break;
             default:
                 throw new java.lang.RuntimeException("this is not quite as bad");

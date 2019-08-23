@@ -44,7 +44,7 @@ public class StudentDAO implements DAO<Student>{
         try {
             String query="SELECT Students.[Name], AVG(CAST(Grades.Grade as float)) AS Grade \n" +
                     "FROM Students\n" +
-                    "JOIN Grades on Students.Id=Grades.StudentId\n" +
+                    "FULL JOIN Grades on Students.Id=Grades.StudentId\n" +
                     "GROUP BY Students.[Name]";
             PreparedStatement statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
@@ -93,9 +93,11 @@ public class StudentDAO implements DAO<Student>{
     public boolean update(int Id, String name){
         try {
             PreparedStatement statement;
+
             String query = "UPDATE   Students Set Name = ?" +
                     " Where Id = ?";
             statement= connection.prepareStatement(query);
+            System.out.println(name);
             statement.setString(1,name);
             statement.setString(2,String.valueOf(Id));
             statement.execute();

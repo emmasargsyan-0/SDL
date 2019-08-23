@@ -10,6 +10,12 @@ public class Student {
         this.name = name;
     }
 
+    public Student(int id, String name, int facultyId, ArrayList<Mark> marks){
+        this.id = id;
+        this.name = name;
+        this.facultyId=facultyId;
+        this.marks=marks;
+    }
     public Student(int id, String name){
         this.id = id;
         this.name = name;
