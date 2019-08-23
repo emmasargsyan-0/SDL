@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Student {
     private int id;
     private String name;
-    private String surname;
     private int facultyId;
     private ArrayList<Mark> marks = new ArrayList<Mark>();
 
@@ -11,10 +10,13 @@ public class Student {
         this.name = name;
     }
 
-    public Student(int id, String name, String surname){
+    public Student(int id, String name){
         this.id = id;
         this.name = name;
-        this.surname = surname;
+    }
+    public Student(String name, int facId){
+        this.facultyId = facId;
+        this.name = name;
     }
 
     public int getId() {
@@ -33,8 +35,5 @@ public class Student {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
 
 }
