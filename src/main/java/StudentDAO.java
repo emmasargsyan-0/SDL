@@ -39,25 +39,44 @@ public class StudentDAO implements DAO<Student>{
         return true;
     }
 
-    public Map allStudentList(){
-        Map students = new HashMap();
+    public ResultSet allStudentList(){
+        ResultSet resultSet = null;
         try {
             String query="SELECT Students.[Name], AVG(CAST(Grades.Grade as float)) AS Grade \n" +
                     "FROM Students\n" +
                     "JOIN Grades on Students.Id=Grades.StudentId\n" +
                     "GROUP BY Students.[Name]";
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                String name = resultSet.getString("Name");
-                String grade = resultSet.getString("Grade");
-                students.put(name, grade);
-            }
+            resultSet = statement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return students;
+        return resultSet;
+    }
+
+    public ResultSet allStudents(){
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT Students.[Id], Students.[Name], Faculties.[Name] as Faculty_Name\n" +
+                    "FROM Students\n" +
+                    "JOIN Faculties on Students.FacultyId=Faculties.Id\n" +
+                    "GROUP BY Students.[Id], Students.[Name], Faculties.[Name]\n" +
+                    "Order By Students.[Name]";
+            PreparedStatement statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("Name");
+                int id = resultSet.getInt("Id");
+                String facultyName = resultSet.getString("Faculty_Name");
+                System.out.println("Name - " + name + ", Lastname - " + id +
+                        ", Specialization - " + facultyName );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
     }
 
 }
