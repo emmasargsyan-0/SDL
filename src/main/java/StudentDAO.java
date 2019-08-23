@@ -91,11 +91,6 @@ public class StudentDAO implements DAO<Student>{
             statement.setInt(1, facultyId);
             resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                String name = resultSet.getString("Name");
-                int id = resultSet.getInt("Id");
-                System.out.println("Name - " + name + ", Lastname - " + id );
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
