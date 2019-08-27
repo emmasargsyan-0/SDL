@@ -28,9 +28,9 @@ public class CommandParser {
             case "addStudent":
                 System.out.println("Enter student name");
                 name = scan.next();
-                System.out.println("Enter faculty id");
-                id = scan.nextInt();
-                System.out.println(studentDAO.add(new Student(name, id)));
+                System.out.println("Enter faculty name");
+                String n = scan.next();
+                System.out.println(studentDAO.addStudent(new Student(name, 0), n));
                 break;
             case "updateStudent":
                 System.out.println("Enter student id");

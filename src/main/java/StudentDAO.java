@@ -17,15 +17,26 @@ public class StudentDAO implements DAO<Student>{
     public Student get(String id){
         return null;
     }
-
     public boolean add(Student obj){
+        return true;
+    }
+
+    public boolean addStudent(Student obj, String fname){
         try {
+
+            PreparedStatement statement1;
+            String query1 = "Select [Id] from Faculties where [Name]=? ";
+            statement1= connection.prepareStatement(query1);
+            statement1.setString(1,fname);
+            ResultSet rs = statement1.executeQuery();
+            rs.next();
+            int id= rs.getInt("Id");
             PreparedStatement statement;
             String query = "Insert into Students(name , FacultyId) " +
                     "VALUES (?,?)";
             statement= connection.prepareStatement(query);
             statement.setString(1,obj.getName());
-            statement.setString(2,String.valueOf(obj.getFacultyId()));
+            statement.setString(2,String.valueOf(id));
             statement.execute();
             return true;
         } catch (SQLException e) {
